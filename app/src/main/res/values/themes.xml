@@ -1,0 +1,4 @@
+<resources>
+
+    <style name="Theme.WallpaperApp20" parent="@style/Theme.Leanback" />
+</resources>
