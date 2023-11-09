@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.fragment.app.FragmentActivity
 
 /** Loads [PlaybackVideoFragment]. */
+/*
 class PlaybackActivity : FragmentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -14,4 +15,4 @@ class PlaybackActivity : FragmentActivity() {
                 .commit()
         }
     }
-}
+}*/

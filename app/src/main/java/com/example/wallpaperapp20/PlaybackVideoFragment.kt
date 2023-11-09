@@ -9,6 +9,7 @@ import androidx.leanback.media.PlaybackTransportControlGlue
 import androidx.leanback.widget.PlaybackControlsRow
 
 /** Handles video playback with media controls. */
+/*
 class PlaybackVideoFragment : VideoSupportFragment() {
 
     private lateinit var mTransportControlGlue: PlaybackTransportControlGlue<MediaPlayerAdapter>
@@ -32,8 +33,10 @@ class PlaybackVideoFragment : VideoSupportFragment() {
         playerAdapter.setDataSource(Uri.parse(videoUrl))
     }
 
-    /*override fun onPause() {
+    */
+/*override fun onPause() {
         super.onPause()
         mTransportControlGlue.pause()
-    }*/
-}
+    }*//*
+
+}*/

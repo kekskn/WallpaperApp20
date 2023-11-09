@@ -17,4 +17,9 @@ class MainActivity : FragmentActivity() {
                 .commitNow()
         }
     }
+
+    companion object {
+        const val SHARED_ELEMENT_NAME = "hero"
+        const val WALLPAPER = "Wallpaper"
+    }
 }

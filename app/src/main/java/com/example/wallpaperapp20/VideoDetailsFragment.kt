@@ -54,13 +54,14 @@ class VideoDetailsFragment : DetailsSupportFragment() {
 
         mDetailsBackground = DetailsSupportFragmentBackgroundController(this)
 
-        mSelectedWallpaper = activity!!.intent.getSerializableExtra(DetailsActivity.WALLPAPER) as Wallpaper
+        mSelectedWallpaper =
+            activity!!.intent.getSerializableExtra(MainActivity.WALLPAPER) as Wallpaper
         if (mSelectedWallpaper != null) {
             mPresenterSelector = ClassPresenterSelector()
             mAdapter = ArrayObjectAdapter(mPresenterSelector)
-            setupDetailsOverviewRow()
-            setupDetailsOverviewRowPresenter()
-            setupRelatedWallpaperListRow()
+            //setupDetailsOverviewRow()
+            //setupDetailsOverviewRowPresenter()
+            //setupRelatedWallpaperListRow()
             adapter = mAdapter
             initializeBackground(mSelectedWallpaper)
             onItemViewClickedListener = ItemViewClickedListener()
@@ -76,7 +77,7 @@ class VideoDetailsFragment : DetailsSupportFragment() {
             .asBitmap()
             .centerCrop()
             .error(R.drawable.default_background)
-            .load(wallpaper?.backgroundImageUrl)
+            .load(wallpaper?.cardImageUrl)
             .into<SimpleTarget<Bitmap>>(object : SimpleTarget<Bitmap>() {
                 override fun onResourceReady(
                     bitmap: Bitmap,
@@ -88,7 +89,7 @@ class VideoDetailsFragment : DetailsSupportFragment() {
             })
     }
 
-    private fun setupDetailsOverviewRow() {
+    /*private fun setupDetailsOverviewRow() {
         Log.d(TAG, "doInBackground: " + mSelectedWallpaper?.toString())
         val row = DetailsOverviewRow(mSelectedWallpaper)
         row.imageDrawable = ContextCompat.getDrawable(activity!!, R.drawable.default_background)
@@ -121,9 +122,9 @@ class VideoDetailsFragment : DetailsSupportFragment() {
         row.actionsAdapter = actionAdapter
 
         mAdapter.add(row)
-    }
+    }*/
 
-    private fun setupDetailsOverviewRowPresenter() {
+    /*private fun setupDetailsOverviewRowPresenter() {
         // Set detail background.
         val detailsPresenter = FullWidthDetailsOverviewRowPresenter(DetailsDescriptionPresenter())
         detailsPresenter.backgroundColor =
@@ -147,15 +148,15 @@ class VideoDetailsFragment : DetailsSupportFragment() {
             }
         }
         mPresenterSelector.addClassPresenter(DetailsOverviewRow::class.java, detailsPresenter)
-    }
+    }*/
 
     private fun setAsBackground() {
         val wallpaperManager = WallpaperManager.getInstance(activity)
 
-        if (mSelectedWallpaper != null && mSelectedWallpaper?.backgroundImageUrl != null) {
+        if (mSelectedWallpaper != null && mSelectedWallpaper?.cardImageUrl != null) {
             Glide.with(requireActivity())
                 .asBitmap()
-                .load(mSelectedWallpaper?.backgroundImageUrl)
+                .load(mSelectedWallpaper?.cardImageUrl)
                 .into(object : SimpleTarget<Bitmap>() {
                     override fun onResourceReady(
                         resource: Bitmap,
@@ -163,10 +164,15 @@ class VideoDetailsFragment : DetailsSupportFragment() {
                     ) {
                         try {
                             wallpaperManager.setBitmap(resource)
-                            Toast.makeText(activity, "Wallpaper set as background", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(
+                                activity,
+                                "Wallpaper set as background",
+                                Toast.LENGTH_SHORT
+                            ).show()
                         } catch (e: IOException) {
                             e.printStackTrace()
-                            Toast.makeText(activity, "Failed to set wallpaper", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(activity, "Failed to set wallpaper", Toast.LENGTH_SHORT)
+                                .show()
                         }
                     }
                 })
@@ -176,7 +182,7 @@ class VideoDetailsFragment : DetailsSupportFragment() {
     }
 
 
-    private fun setupRelatedWallpaperListRow() {
+    /*private fun setupRelatedWallpaperListRow() {
         val subcategories = arrayOf(getString(R.string.related_wallpapers))
         val list: List<Wallpaper?>? = getList()
 
@@ -194,7 +200,7 @@ class VideoDetailsFragment : DetailsSupportFragment() {
     private fun convertDpToPixel(context: Context, dp: Int): Int {
         val density = context.applicationContext.resources.displayMetrics.density
         return Math.round(dp.toFloat() * density)
-    }
+    }*/
 
     private inner class ItemViewClickedListener : OnItemViewClickedListener {
         override fun onItemClicked(
@@ -205,14 +211,14 @@ class VideoDetailsFragment : DetailsSupportFragment() {
         ) {
             if (item is Wallpaper) {
                 Log.d(TAG, "Item: " + item.toString())
-                val intent = Intent(activity!!, DetailsActivity::class.java)
+                val intent = Intent(activity!!, MainActivity::class.java)
                 intent.putExtra(resources.getString(R.string.wallpaper), mSelectedWallpaper)
 
                 val bundle =
                     ActivityOptionsCompat.makeSceneTransitionAnimation(
                         activity!!,
                         (itemViewHolder?.view as ImageCardView).mainImageView,
-                        DetailsActivity.SHARED_ELEMENT_NAME
+                        MainActivity.SHARED_ELEMENT_NAME
                     )
                         .toBundle()
                 startActivity(intent, bundle)

@@ -2,6 +2,7 @@ package com.example.wallpaperapp20
 
 import androidx.leanback.widget.AbstractDetailsDescriptionPresenter
 
+/*
 class DetailsDescriptionPresenter : AbstractDetailsDescriptionPresenter() {
 
     override fun onBindDescription(
@@ -14,4 +15,4 @@ class DetailsDescriptionPresenter : AbstractDetailsDescriptionPresenter() {
         viewHolder.subtitle.text = wallpaper.studio
         viewHolder.body.text = wallpaper.description
     }
-}
+}*/

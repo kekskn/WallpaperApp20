@@ -144,13 +144,13 @@ class MainFragment : BrowseSupportFragment() {
 
             if (item is Wallpaper) {
                 Log.d(TAG, "Item: " + item.toString())
-                val intent = Intent(activity!!, DetailsActivity::class.java)
-                intent.putExtra(DetailsActivity.WALLPAPER, item)
+                val intent = Intent(activity!!, MainActivity::class.java)
+                intent.putExtra(MainActivity.WALLPAPER, item)
 
                 val bundle = ActivityOptionsCompat.makeSceneTransitionAnimation(
                     activity!!,
                     (itemViewHolder.view as ImageCardView).mainImageView,
-                    DetailsActivity.SHARED_ELEMENT_NAME
+                    MainActivity.SHARED_ELEMENT_NAME
                 )
                     .toBundle()
                 startActivity(intent, bundle)
