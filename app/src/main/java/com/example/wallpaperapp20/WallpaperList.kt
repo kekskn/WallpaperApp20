@@ -79,7 +79,7 @@ object WallpaperList {
         )
 
         val bgImageUrl = arrayOf(
-            "https://images.pexels.com/photos/259915/pexels-photo-259915.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+            "https://www.wallpaperup.com/uploads/wallpapers/2013/12/15/196207/dfe27e0ee314d6e8181a2c5c4166f12f-500.jpg",
             "https://www.wallpaperup.com/uploads/wallpapers/2013/12/18/198402/bf588ce14b94a7bcd5f4a05f669bc310-700.jpg",
             "https://www.wallpaperup.com/uploads/wallpapers/2013/12/18/198901/1e30f16dc7fe45af8bfead9b919c7246-500.jpg",
             "https://www.wallpaperup.com/uploads/wallpapers/2013/12/22/202140/dcd8625dcb71d077d459abb7ae67f109-500.jpg",

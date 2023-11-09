@@ -1,9 +1,7 @@
 package com.example.wallpaperapp20
 
-import java.util.Collections
 import java.util.Timer
 import java.util.TimerTask
-
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.Drawable
@@ -30,7 +28,6 @@ import android.view.Gravity
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
-
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.transition.Transition
@@ -70,10 +67,11 @@ class MainFragment : BrowseSupportFragment() {
     private fun prepareBackgroundManager() {
 
         mBackgroundManager = BackgroundManager.getInstance(activity)
-        mBackgroundManager.attach(activity!!.window)
-        mDefaultBackground = ContextCompat.getDrawable(activity!!, R.drawable.default_background)
+        mBackgroundManager.attach(requireActivity().window)
+        mDefaultBackground =
+            ContextCompat.getDrawable(requireActivity(), R.drawable.default_background)
         mMetrics = DisplayMetrics()
-        activity!!.windowManager.defaultDisplay.getMetrics(mMetrics)
+        requireActivity().windowManager.defaultDisplay.getMetrics(mMetrics)
     }
 
     private fun setupUIElements() {
@@ -83,9 +81,9 @@ class MainFragment : BrowseSupportFragment() {
         isHeadersTransitionOnBackEnabled = true
 
         // set fastLane (or headers) background color
-        brandColor = ContextCompat.getColor(activity!!, R.color.fastlane_background)
+        brandColor = ContextCompat.getColor(requireActivity(), R.color.fastlane_background)
         // set search icon color
-        searchAffordanceColor = ContextCompat.getColor(activity!!, R.color.search_opaque)
+        searchAffordanceColor = ContextCompat.getColor(requireActivity(), R.color.search_opaque)
     }
 
     private fun loadRows() {
@@ -119,16 +117,11 @@ class MainFragment : BrowseSupportFragment() {
         gridRowAdapter.add(resources.getString(R.string.grid_view))
         gridRowAdapter.add(getString(R.string.error_fragment))
         gridRowAdapter.add(resources.getString(R.string.personal_settings))
-        //rowsAdapter.add(ListRow(gridHeader, gridRowAdapter))
 
         adapter = rowsAdapter
     }
 
     private fun setupEventListeners() {
-        setOnSearchClickedListener {
-            Toast.makeText(activity!!, "Implement your own in-app search", Toast.LENGTH_LONG)
-                .show()
-        }
 
         onItemViewClickedListener = ItemViewClickedListener()
         onItemViewSelectedListener = ItemViewSelectedListener()
@@ -144,7 +137,7 @@ class MainFragment : BrowseSupportFragment() {
 
             if (item is Wallpaper) {
                 Log.d(TAG, "Item: " + item.toString())
-                val intent = Intent(activity!!, MainActivity::class.java)
+                val intent = Intent(activity!!, DetailsActivity::class.java)
                 intent.putExtra(MainActivity.WALLPAPER, item)
 
                 val bundle = ActivityOptionsCompat.makeSceneTransitionAnimation(
@@ -180,7 +173,7 @@ class MainFragment : BrowseSupportFragment() {
     private fun updateBackground(uri: String?) {
         val width = mMetrics.widthPixels
         val height = mMetrics.heightPixels
-        Glide.with(activity!!)
+        Glide.with(requireActivity())
             .load(uri)
             .centerCrop()
             .error(mDefaultBackground)
