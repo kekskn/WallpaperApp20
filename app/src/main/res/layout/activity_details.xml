@@ -5,4 +5,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".DetailsActivity"
-    tools:deviceIds="tv" />
+    tools:deviceIds="tv">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/default_background" />
+
+    <!-- TextView for displaying time -->
+    <TextView
+        android:id="@+id/timeTextView"
+        android:layout_width="535dp"
+        android:layout_height="212dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:elevation="1dp"
+        android:text="12:34 PM"
+        android:textColor="@android:color/black"
+        android:textSize="96sp"
+        android:textStyle="bold" />
+</FrameLayout>
