@@ -1,5 +1,8 @@
 package com.example.wallpaperapp20
 
+import android.icu.text.DateFormat.ABBR_MONTH_WEEKDAY_DAY
+import android.icu.text.DateFormat.ABBR_WEEKDAY
+import android.icu.text.DateFormat.YEAR_ABBR_MONTH
 import android.os.Bundle
 import android.widget.TextView
 import androidx.fragment.app.FragmentActivity
@@ -18,10 +21,12 @@ class DetailsActivity : FragmentActivity() {
                 .commitNow()
         }
         val timeTextView: TextView = findViewById(R.id.timeTextView)
-
         val currentTime = SimpleDateFormat("HH:mm", Locale.getDefault()).format(Date())
-
         timeTextView.text = currentTime
+
+        val dateTextView: TextView = findViewById(R.id.dateTextView)
+        val currentDate = SimpleDateFormat("E, dd.LLL,yyyy", Locale.getDefault()).format(Date())
+        dateTextView.text = currentDate
     }
 
 
