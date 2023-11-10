@@ -34,7 +34,7 @@ import com.bumptech.glide.request.transition.Transition
 import com.example.wallpaperapp20.WallpaperList.setupWallpapers
 
 /**
- * Loads a grid of cards with movies to browse.
+ * Loads a grid of cards with wallpapers to browse.
  */
 class MainFragment : BrowseSupportFragment() {
 
@@ -82,8 +82,6 @@ class MainFragment : BrowseSupportFragment() {
 
         // set fastLane (or headers) background color
         brandColor = ContextCompat.getColor(requireActivity(), R.color.fastlane_background)
-        // set search icon color
-        searchAffordanceColor = ContextCompat.getColor(requireActivity(), R.color.search_opaque)
     }
 
     private fun loadRows() {
@@ -122,7 +120,6 @@ class MainFragment : BrowseSupportFragment() {
     }
 
     private fun setupEventListeners() {
-
         onItemViewClickedListener = ItemViewClickedListener()
         onItemViewSelectedListener = ItemViewSelectedListener()
     }
@@ -194,9 +191,7 @@ class MainFragment : BrowseSupportFragment() {
         mBackgroundTimer = Timer()
         mBackgroundTimer?.schedule(UpdateBackgroundTask(), BACKGROUND_UPDATE_DELAY.toLong())
     }
-
     private inner class UpdateBackgroundTask : TimerTask() {
-
         override fun run() {
             mHandler.post { updateBackground(mBackgroundUri) }
         }
@@ -217,17 +212,13 @@ class MainFragment : BrowseSupportFragment() {
         override fun onBindViewHolder(viewHolder: Presenter.ViewHolder, item: Any) {
             (viewHolder.view as TextView).text = item as String
         }
-
         override fun onUnbindViewHolder(viewHolder: Presenter.ViewHolder) {}
     }
 
     companion object {
         private val TAG = "MainFragment"
-
         private val BACKGROUND_UPDATE_DELAY = 300
         private val GRID_ITEM_WIDTH = 200
         private val GRID_ITEM_HEIGHT = 200
-        private val NUM_ROWS = 6
-        private val NUM_COLS = 15
     }
 }

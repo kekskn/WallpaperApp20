@@ -27,7 +27,6 @@ class ErrorFragment : ErrorSupportFragment() {
             requireFragmentManager().beginTransaction().remove(this@ErrorFragment).commit()
         }
     }
-
     companion object {
         private val TRANSLUCENT = true
     }

@@ -13,9 +13,7 @@ import com.bumptech.glide.request.transition.Transition
 import java.io.IOException
 import java.io.Serializable
 
-/**
- * Movie class represents video entity with title, description, image thumbs and video url.
- */
+
 data class Wallpaper(
     var id: Long = 0,
     var title: String? = null,
@@ -35,28 +33,6 @@ data class Wallpaper(
                 ", backgroundImageUrl='" + backgroundImageUrl + '\'' +
                 ", cardImageUrl='" + cardImageUrl + '\'' +
                 '}'
-    }
-
-    fun setAsBackground(context: Context) {
-        if (backgroundImageUrl != null) {
-            Glide.with(context)
-                .asBitmap()
-                .load(backgroundImageUrl)
-                .into(object : SimpleTarget<Bitmap>() {
-                    override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
-                        val wallpaperManager = WallpaperManager.getInstance(context)
-                        try {
-                            wallpaperManager.setBitmap(resource)
-                            Log.d(TAG, "Wallpaper set as background")
-                            Toast.makeText(context, "Wallpaper set as background", Toast.LENGTH_SHORT).show()
-                        } catch (e: IOException) {
-                            e.printStackTrace()
-                            Log.e(TAG, "Failed to set wallpaper: ${e.message}")
-                            Toast.makeText(context, "Failed to set wallpaper", Toast.LENGTH_SHORT).show()
-                        }
-                    }
-                })
-        }
     }
 
     companion object {

@@ -33,7 +33,6 @@ class CardPresenter : Presenter() {
                 super.setSelected(selected)
             }
         }
-
         cardView.isFocusable = true
         cardView.isFocusableInTouchMode = true
         updateCardBackgroundColor(cardView, false)
@@ -67,15 +66,12 @@ class CardPresenter : Presenter() {
 
     private fun updateCardBackgroundColor(view: ImageCardView, selected: Boolean) {
         val color = if (selected) sSelectedBackgroundColor else sDefaultBackgroundColor
-        // Both background colors should be set because the view"s background is temporarily visible
-        // during animations.
         view.setBackgroundColor(color)
         view.setInfoAreaBackgroundColor(color)
     }
 
     companion object {
         private val TAG = "CardPresenter"
-
         private val CARD_WIDTH = 313
         private val CARD_HEIGHT = 176
     }
